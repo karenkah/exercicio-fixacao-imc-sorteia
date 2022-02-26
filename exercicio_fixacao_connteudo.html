@@ -1,0 +1,121 @@
+<meta charset = "UTF-8">
+<h1>EXERCICIO DE FIXAÇÃO DE CONTEÚDO</h1>
+	<p>Aqui venho usando as tags aprendidas e como estruturá-las dentro do programa. Estou aprendendo <a href = "http://www.alura.com.br">aqui</a>!
+	<br>
+	Agora vamos para o Javascript!</p>
+
+	<script>
+	function pulaLinha(){
+		document.write("<br>");
+	}
+	function mostra(frase){
+		document.write(frase);
+		pulaLinha();
+	}
+	
+
+	function calculaImc(altura,peso){
+		var imc = Math.round(peso/(altura*altura));
+		return imc;
+	}//pode colocar direto return = peso/(altura*altura);
+
+	var imcKaren = calculaImc(1.70,65);
+	pulaLinha();
+	mostra("Calculei meu IMC, e o resultado foi " + imcKaren + ".")
+	pulaLinha();
+
+</script>
+Vamos brincar! Calcule seu IMC também: <button id="aqui">AQUI</button>
+<br>
+<br>
+<script>
+	function calculaImcUsuario(){
+		var nomeInformado = prompt("Digite seu nome aqui!")
+		var alturaInformada =prompt(nomeInformado + ", agora me diz tua altura:");
+		var pesoInformado = prompt(nomeInformado + ", preciso do teu peso também, digita aí!");
+		var imcUsuario = calculaImc(alturaInformada, pesoInformado);
+			alert("Então, " + nomeInformado + ", seu IMC é " + imcUsuario + " ! ");
+			if(imcUsuario == imcKaren){
+				alert("Uau! Estamos com o mesmo IMC!");
+			}
+			if(imcUsuario < imcKaren){
+				alert("Nossa, seu IMC está menor que o meu! Você mentiu também, né?!");
+			}
+			if(imcUsuario > imcKaren){
+				alert("Seu IMC está maior que o meu, hein!!");
+			}
+
+		
+	}
+	
+		
+
+	var button = document.querySelector("button#aqui");
+	
+	button.onclick = calculaImcUsuario;
+
+	mostra("E agora?")
+	
+
+
+</script>
+Tente aqui adivinhar o número sorteado!
+<input/>
+<button id="deSeuChute">De seu chute!</button>
+<br>
+<script>
+		function sorteia(){
+			return Math.round(Math.random()*20);
+		}
+
+		function sorteiaNumeros(quantidade){
+			var segredos = [];
+			numero = 1
+			while(numero <= quantidade){
+				numeroSorteado = sorteia();
+				var achou = false;
+				
+					if(numeroSorteado != 0){
+						for(var posicao = 0; posicao < segredos.length; posicao++){
+
+							if(segredos[posicao] == numeroSorteado){
+							achou = true;
+							break
+							}
+						}
+						if(achou == false){
+							segredos.push(numeroSorteado);
+							numero++;
+					}
+					
+
+				}
+				
+			}
+			return segredos;
+		}
+	var segredos = sorteiaNumeros(3);
+	console.log(segredos);
+
+	var chute = document.querySelector("input");
+
+		function verificaNumeros(){
+			var achou = false;
+			tentativa = 1
+			for(posicao = 0; posicao < segredos.length; posicao++)
+			
+				if(chute.value == segredos[posicao]){
+					alert("Voce acertou!")
+					achou = true;
+				}
+				if(achou == false){
+					alert("Voce errou!!")
+				}
+
+			
+			chute.value = "";
+			chute.focus();
+		}
+	var button = document.querySelector("button#deSeuChute");
+	button.onclick = verificaNumeros;
+</script>
